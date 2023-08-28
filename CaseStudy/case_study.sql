@@ -178,4 +178,50 @@ Insert into hop_dong(ngay_lam_hop_dong,ngay_ket_thuc,tien_dat_coc,ma_nhan_vien,m
  left join hop_dong_chi_tiet HDCT on HDCT.ma_hop_dong = H.ma_hop_dong
  left join dich_vu_di_kem DVDK on DVDK.ma_dich_vu_di_kem = HDCT.ma_dich_vu_di_kem;
  
+ -- '6.	Hiển thị ma_dich_vu, ten_dich_vu, dien_tich, chi_phi_thue, ten_loai_dich_vu của tất cả các loại dịch vụ
+ -- chưa từng được khách hàng thực hiện đặt từ quý 1 của năm 2021 (Quý 1 là tháng 1, 2, 3).'
  
+ select DV.ma_dich_vu, DV.ten_dich_vu, DV.dien_tich, DV.chi_phi_thue, LDV.ten_loai_dich_vu, HD.ngay_lam_hop_dong  from dich_vu DV
+ join loai_dich_vu LDV on LDV.ma_loai_dich_vu = DV.ma_loai_dich_vu
+ join hop_dong HD on HD.ma_dich_vu = DV.ma_dich_vu
+ where DV.ma_dich_vu not in (select ma_dich_vu from hop_dong where ngay_lam_hop_dong between '2021-01-01' and '2021-03-31')
+ group by ma_dich_vu;
+ -- 'cần tìm hiểu' 
+ SET @@sql_mode = SYS.LIST_DROP(@@sql_mode, 'ONLY_FULL_GROUP_BY');
+SELECT @@sql_mode;
+
+ -- '7.	Hiển thị thông tin ma_dich_vu, ten_dich_vu, dien_tich, so_nguoi_toi_da, chi_phi_thue, ten_loai_dich_vu của tất cả các loại dịch vụ 
+ -- đã từng được khách hàng đặt phòng trong năm 2020 nhưng chưa từng được khách hàng đặt phòng trong năm 2021.'
+  select DV.ma_dich_vu, DV.ten_dich_vu, DV.dien_tich,DV.so_nguoi_toi_da, DV.chi_phi_thue, LDV.ten_loai_dich_vu, HD.ngay_lam_hop_dong  from dich_vu DV
+ join loai_dich_vu LDV on LDV.ma_loai_dich_vu = DV.ma_loai_dich_vu
+ join hop_dong HD on HD.ma_dich_vu = DV.ma_dich_vu
+ where DV.ma_dich_vu  in (select ma_dich_vu from hop_dong where ngay_lam_hop_dong between '2020-01-01' and '2020-12-31') 
+ and DV.ma_dich_vu not in (select ma_dich_vu from hop_dong where ngay_lam_hop_dong between '2021-01-01' and '2021-12-31')
+ group by ma_dich_vu;
+ -- '8.	Hiển thị thông tin ho_ten khách hàng có trong hệ thống, với yêu cầu ho_ten không trùng nhau.
+-- Học viên sử dụng theo 3 cách khác nhau để thực hiện yêu cầu trên.
+
+select distinct ho_ten from khach_hang;
+select ho_ten from khach_hang group by ho_ten;
+select ho_ten from khach_hang group by ho_ten 
+having count(1) = 1;
+
+-- '9.	Thực hiện thống kê doanh thu theo tháng, nghĩa là tương ứng với mỗi tháng trong năm 2021 thì sẽ có bao nhiêu khách hàng thực hiện đặt phòng.'
+-- 'phần này tính doanh thu theo tháng trong 2021'
+select H.ma_hop_dong, month(H.ngay_lam_hop_dong) as thang, count(*) as dat_phong, (H.tien_dat_coc + (HDCT.so_luong * DVDK.gia )) as tong_tien  from hop_dong H
+left join dich_vu DV on DV.ma_dich_vu = H.ma_dich_vu
+left join hop_dong_chi_tiet HDCT on HDCT.ma_hop_dong = H.ma_hop_dong
+left join dich_vu_di_kem DVDK on DVDK.ma_dich_vu_di_kem = HDCT.ma_dich_vu_di_kem
+where H.ma_hop_dong in (select ma_hop_dong from hop_dong where ngay_lam_hop_dong between '2021-01-01' and '2021-12-31')
+group by thang;
+-- 'phần này tính số lần đặt phòng theo tháng'
+select month(ngay_lam_hop_dong) as thang, count(1) from hop_dong
+where ma_hop_dong in (select ma_hop_dong from hop_dong where ngay_lam_hop_dong between '2021-01-01' and '2021-12-31')
+group by month(ngay_lam_hop_dong);
+
+-- '10.	Hiển thị thông tin tương ứng với từng hợp đồng thì đã sử dụng bao nhiêu dịch vụ đi kèm. 
+-- Kết quả hiển thị bao gồm ma_hop_dong, ngay_lam_hop_dong, ngay_ket_thuc, tien_dat_coc, so_luong_dich_vu_di_kem (được tính dựa trên việc sum so_luong ở dich_vu_di_kem).
+select H.ma_hop_dong, ngay_lam_hop_dong,ngay_ket_thuc,tien_dat_coc,sum(CT.so_luong) as so_luong_dich_vu_di_kem
+from hop_dong H left join  hop_dong_chi_tiet CT on H.ma_hop_dong = CT.ma_hop_dong
+group by H.ma_hop_dong
+order by  H.ma_hop_dong;
