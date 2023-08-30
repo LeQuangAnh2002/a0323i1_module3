@@ -184,8 +184,11 @@ Insert into hop_dong(ngay_lam_hop_dong,ngay_ket_thuc,tien_dat_coc,ma_nhan_vien,m
  select DV.ma_dich_vu, DV.ten_dich_vu, DV.dien_tich, DV.chi_phi_thue, LDV.ten_loai_dich_vu, HD.ngay_lam_hop_dong  from dich_vu DV
  join loai_dich_vu LDV on LDV.ma_loai_dich_vu = DV.ma_loai_dich_vu
  join hop_dong HD on HD.ma_dich_vu = DV.ma_dich_vu
- where DV.ma_dich_vu not in (select ma_dich_vu from hop_dong where ngay_lam_hop_dong between '2021-01-01' and '2021-03-31')
+ where DV.ma_dich_vu not in ( select ma_dich_vu from hop_dong where quarter(ngay_lam_hop_dong) = 1)
  group by ma_dich_vu;
+--  select ma_dich_vu from hop_dong where ngay_lam_hop_dong between '2021-01-01' and '2021-03-31';
+
+ 
  -- 'cần tìm hiểu' 
  SET @@sql_mode = SYS.LIST_DROP(@@sql_mode, 'ONLY_FULL_GROUP_BY');
 SELECT @@sql_mode;
