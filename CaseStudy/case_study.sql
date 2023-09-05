@@ -309,4 +309,9 @@ update dich_vu_di_kem  set gia = gia *2 where ma_dich_vu_di_kem in ( select ma_d
 select ma_khach_hang as id,ho_ten,email,so_dien_thoai,ngay_sinh,dia_chi from khach_hang
 union 
 select ma_nhan_vien as id,ho_ten,email,so_dien_thoai,ngay_sinh,dia_chi from nhan_vien;
+-- '21.	Tạo khung nhìn có tên là v_nhan_vien để lấy được thông tin của tất cả các nhân viên có địa chỉ 
+-- là “Hải Châu” và đã từng lập hợp đồng cho một hoặc nhiều khách hàng bất kì với ngày lập hợp đồng là “12/12/2019”.'
+create view v_nhan_vien as 
+select * from nhan_vien NV where dia_chi like '%Hải Châu%' and exists (select ma_nhan_vien from hop_dong HD where ma_nhan_vien = HD.ma_nhan_vien  and ngay_lam_hop_dong = '2019-12-12');
 
+select * from v_nhan_vien;
