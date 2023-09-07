@@ -312,6 +312,147 @@ select ma_nhan_vien as id,ho_ten,email,so_dien_thoai,ngay_sinh,dia_chi from nhan
 -- '21.	Tạo khung nhìn có tên là v_nhan_vien để lấy được thông tin của tất cả các nhân viên có địa chỉ 
 -- là “Hải Châu” và đã từng lập hợp đồng cho một hoặc nhiều khách hàng bất kì với ngày lập hợp đồng là “12/12/2019”.'
 create view v_nhan_vien as 
-select * from nhan_vien NV where dia_chi like '%Hải Châu%' and exists (select ma_nhan_vien from hop_dong HD where ma_nhan_vien = HD.ma_nhan_vien  and ngay_lam_hop_dong = '2019-12-12');
+select * from nhan_vien NV where dia_chi like '%Hải Châu%' and exists 
+(select ma_nhan_vien from hop_dong HD where ma_nhan_vien = HD.ma_nhan_vien  and ngay_lam_hop_dong = '2019-12-12');
 
 select * from v_nhan_vien;
+
+-- '22.	Thông qua khung nhìn v_nhan_vien thực hiện cập nhật địa chỉ thành “Liên Chiểu” đối với tất cả các nhân viên được nhìn thấy bởi khung nhìn này'
+update v_nhan_vien set dia_chi = 'Liên Chiểu';
+select * from v_nhan_vien;
+
+-- '23.	Tạo Stored Procedure sp_xoa_khach_hang dùng để xóa thông tin của một khách hàng nào đó với ma_khach_hang được truyền vào như là 1 tham số của sp_xoa_khach_hang.'
+delimiter //
+create procedure sp_xoa_khach_hang(in sp_ma_khach_hang int)
+begin
+delete from hop_dong_chi_tiet where ma_hop_dong in (select ma_hop_dong from hop_dong);
+delete from hop_dong where ma_khach_hang in (select ma_khach_hang from khach_hang where ma_khach_hang = sp_ma_khach_hang  );
+delete from khach_hang where ma_khach_hang = sp_ma_khach_hang;
+end //
+DELIMITER //;
+call sp_xoa_khach_hang(13);
+ 
+-- '24.	Tạo Stored Procedure sp_them_moi_hop_dong dùng để thêm mới vào bảng hop_dong 
+-- với yêu cầu sp_them_moi_hop_dong phải thực hiện kiểm tra tính hợp lệ của dữ liệu bổ sung, 
+-- với nguyên tắc không được trùng khóa chính và đảm bảo toàn vẹn tham chiếu đến các bảng liên quan.'
+delimiter //
+create procedure sp_them_moi_hop_dong
+(in sp_ma_hop_dong int ,in sp_ngay_lam_hop_dong datetime ,in sp_ngay_ket_thuc datetime ,in sp_tien_dat_coc double,in sp_ma_nhan_vien int ,in sp_ma_khach_hang int,in sp_ma_dich_vu int,out result varchar(50))
+begin
+declare check_ma_hop_dong int;
+declare check_ma_nhan_vien int;
+declare check_ma_khach_hang int;
+declare check_ma_dich_vu int;
+ select count(*) into check_ma_hop_dong   from hop_dong where ma_hop_dong = sp_ma_hop_dong;
+ if check_ma_hop_dong > 0 then 
+	set result = 'mã hợp đồng đã tồn tại' ;
+    end if;
+select count(*) into check_ma_nhan_vien  from nhan_vien where ma_nhan_vien = sp_ma_nhan_vien;
+if check_ma_nhan_vien = 0 then 
+	set result = 'mã nhân viên không tồn tại';
+    end if;
+    
+select  count(*) into check_ma_khach_hang from khach_hang where ma_khach_hang = sp_ma_khach_hang;
+if check_ma_khach_hang = 0 then 
+	set result ='mã khách hàng không tồn tại';
+    end if;
+    select   count(*) into  check_ma_dich_vu from dich_vu where ma_dich_vu  = sp_ma_dich_vu;
+if check_ma_dich_vu = 0 then 
+	set result = 'mã dịch vụ không tồn tại' ;
+    end if;
+    
+	-- Thêm mới vào bảng hop_dong
+    
+    
+    insert into hop_dong(ma_hop_dong,ngay_lam_hop_dong,ngay_ket_thuc,tien_dat_coc,ma_nhan_vien,ma_khach_hang,ma_dich_vu) values
+    (sp_ma_hop_dong,sp_ngay_lam_hop_dong,sp_ngay_ket_thuc,sp_tien_dat_coc,sp_ma_nhan_vien,sp_ma_khach_hang,sp_ma_dich_vu);
+    set result = "thêm thành công ";
+    
+end //
+
+delimiter //;
+
+call sp_them_moi_hop_dong(15,now(),now(),2000,3,1,3,@result);
+select @result;
+
+-- '25.	Tạo Trigger có tên tr_xoa_hop_dong khi xóa bản ghi trong bảng hop_dong thì hiển thị 
+-- tổng số lượng bản ghi còn lại có trong bảng hop_dong ra giao diện console của database.'
+-- create table `history`(
+-- id int auto_increment primary key,
+-- old_ma_hop_dong int,
+-- old_ngay_lam_hop_dong datetime,
+-- old_ngay_ket_thuc datetime,
+-- old_tien_dat_coc double,
+-- old_ma_nhan_vien int,
+-- old_ma_khach_hang int,
+-- old_ma_dich_vu int,
+-- old_update_day datetime
+-- );
+
+
+-- delimiter //
+-- create trigger tr_xoa_hop_dong
+-- after delete on hop_dong
+-- for each row
+-- begin
+--  insert into `history`(old_ma_hop_dong,old_ngay_lam_hop_dong,old_ngay_ket_thuc,old_tien_dat_coc,old_ma_nhan_vien,old_ma_khach_hang,old_ma_dich_vu,old_update_day)
+--  values(old.ma_hop_dong,old.ngay_lam_hop_dong,old.ngay_ket_thuc,old.tien_dat_coc,old.ma_nhan_vien,old.ma_khach_hang,old.ma_dich_vu,now());
+-- end //
+-- delimiter //;
+
+
+
+DELIMITER //
+CREATE TRIGGER message_tr_xoa_hop_dong
+AFTER DELETE ON hop_dong
+FOR EACH ROW
+BEGIN
+    DECLARE count_hop_dong INT;
+    SELECT COUNT(*) INTO count_hop_dong FROM hop_dong;
+    SET @count_hop_dong = count_hop_dong;
+END //
+DELIMITER ;
+
+delete from hop_dong where ma_hop_dong = 15;
+select @count_hop_dong;
+
+-- '26.	Tạo Trigger có tên tr_cap_nhat_hop_dong khi cập nhật ngày kết thúc hợp đồng, cần kiểm tra xem thời gian cập nhật có phù hợp hay không, 
+-- với quy tắc sau: Ngày kết thúc hợp đồng phải lớn hơn ngày làm hợp đồng ít nhất là 2 ngày. 
+-- Nếu dữ liệu hợp lệ thì cho phép cập nhật, nếu dữ liệu không hợp lệ thì in ra thông báo 
+-- “Ngày kết thúc hợp đồng phải lớn hơn ngày làm hợp đồng ít nhất là 2 ngày” trên console của database.'
+DELIMITER //
+create trigger tr_cap_nhat_hop_dong
+before update on hop_dong
+for each row
+begin
+	declare result varchar(50);
+    if (datediff(new.ngay_ket_thuc,old.ngay_lam_hop_dong) <= 2) then 
+    SIGNAL SQLSTATE '45000'
+	 set MESSAGE_TEXT = 'Ngày kết thúc hợp đồng phải lớn hơn ngày làm hợp đồng ít nhất là 2 ngày';
+    end if;
+    
+end //
+DELIMITER //;
+update hop_dong set ngay_ket_thuc = '2021-04-12' where ma_hop_dong = 10;
+-- '27.	Tạo Function thực hiện yêu cầu sau:
+-- a.	Tạo Function func_dem_dich_vu: Đếm các dịch vụ đã được sử dụng với tổng tiền là > 2.000.000 VNĐ.
+-- b.	Tạo Function func_tinh_thoi_gian_hop_dong: Tính khoảng thời gian dài nhất tính từ lúc bắt đầu làm hợp đồng đến 
+-- lúc kết thúc hợp đồng mà khách hàng đã thực hiện thuê dịch vụ (lưu ý chỉ xét các khoảng thời gian dựa vào từng lần 
+-- làm hợp đồng thuê dịch vụ, không xét trên toàn bộ các lần làm hợp đồng). Mã của khách hàng được truyền vào như là 1 tham số của function này.
+
+DELIMITER //
+create function func_dem_dich_vu(ma_khach_hang int)
+returns int
+deterministic
+begin
+	declare count_dich_vu int;
+   
+    
+end //
+DELIMITER //;
+ 
+select func_dem_dich_vu();
+SELECT * FROM case_study.hop_dong;
+select max(datediff(ngay_ket_thuc,ngay_lam_hop_dong)) from hop_dong where ma_khach_hang = 4 group by ma_khach_hang;
+
+
