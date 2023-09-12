@@ -433,6 +433,7 @@ begin
     
 end //
 DELIMITER //;
+
 update hop_dong set ngay_ket_thuc = '2021-04-12' where ma_hop_dong = 10;
 -- '27.	Tạo Function thực hiện yêu cầu sau:
 -- a.	Tạo Function func_dem_dich_vu: Đếm các dịch vụ đã được sử dụng với tổng tiền là > 2.000.000 VNĐ.
@@ -441,18 +442,48 @@ update hop_dong set ngay_ket_thuc = '2021-04-12' where ma_hop_dong = 10;
 -- làm hợp đồng thuê dịch vụ, không xét trên toàn bộ các lần làm hợp đồng). Mã của khách hàng được truyền vào như là 1 tham số của function này.
 
 DELIMITER //
-create function func_dem_dich_vu(ma_khach_hang int)
+create function func_tinh_thoi_gian_hop_dong(p_ma_khach_hang int)
 returns int
 deterministic
 begin
-	declare count_dich_vu int;
-   
+	declare result int;
+	select max(datediff(HD.ngay_ket_thuc,HD.ngay_lam_hop_dong)) into result from hop_dong HD
+join dich_vu DV on DV.ma_dich_vu = HD.ma_dich_vu
+join khach_hang KH on KH.ma_khach_hang = HD.ma_khach_hang
+where HD.ma_khach_hang = p_ma_khach_hang and DV.ma_dich_vu is not null;
+   return result;
     
 end //
 DELIMITER //;
- 
+ select * from hop_dong;
+select func_tinh_thoi_gian_hop_dong();
+
+
+
+
+delimiter //
+create function func_dem_dich_vu()
+	returns varchar(50)
+    NOT DETERMINISTIC
+NO SQL
+ begin
+    declare result varchar(50);
+     select DV.ten_dich_vu into result  from hop_dong HD join dich_vu DV on
+	HD.ma_dich_vu = DV.ma_dich_vu
+	group by HD.ma_dich_vu
+	having count(*) = ( select max(so_lan_su_dung) from (select HD.ma_dich_vu,count(*) as so_lan_su_dung, DV.chi_phi_thue, (count(*) * DV.chi_phi_thue) as chi_phi from hop_dong HD 
+	join dich_vu DV on HD.ma_dich_vu = DV.ma_dich_vu 
+	group by HD.ma_dich_vu  
+	having chi_phi > 2000000) as subquery);
+	return result;
+end //
+delimiter ;
 select func_dem_dich_vu();
-SELECT * FROM case_study.hop_dong;
-select max(datediff(ngay_ket_thuc,ngay_lam_hop_dong)) from hop_dong where ma_khach_hang = 4 group by ma_khach_hang;
+
+
+
+
+
+
 
 
