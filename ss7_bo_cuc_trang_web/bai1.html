@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
+    <style>
+        *{
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+
+        }
+        body{
+            font-family: 'Poppisn',sans-serif;
+        }
+        .container{
+            width: 100%;
+        }
+        .top-bar{
+          
+            background-color: #222222;
+            height: 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 28px;
+        }
+        .navbar ul{
+            display: flex;
+            padding: 0 5px;
+        }
+        .navbar ul li{
+            list-style-type: none;
+            display: block;
+        }
+        .navbar ul a{
+            color: #939B9D;
+            font-size: 18px;
+            font-weight:600;
+            margin: 0 30px 0 0;
+            padding: 0 10px;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            line-height: 60px;
+            display: block;
+        }
+        .navbar li:hover a{
+            background-color: #080808;
+            color: white;
+        }
+        .navright{
+            display: flex;
+            align-items: center;
+        }
+        .navright a{
+            color: #939B9D;
+            font-size: 18px;
+            font-weight:500;
+            text-decoration: none;
+        }
+        .navright a i{
+            padding: 0 5px;
+
+        }
+        .main{
+            display: flex;
+            flex-wrap: wrap;
+            min-height: 630px;
+            width: 100%;
+        }
+        .sidebar-left{
+            flex-basis: 20%;
+            background-color: #F1F1F1;
+            padding: 15px;
+        }
+        .content{
+            flex-basis: 60%;
+            padding: 15px;
+            overflow: auto;
+        }
+        .sidebar-right{
+            flex-basis: 20%;
+            padding: 15px;
+            background-color: #F1F1F1;
+        }
+        .sidebar-left ul, .sidebar-right ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        .sidebar-left ul li {
+            background-color: #2F79B9;
+            height: 40px;
+            margin-bottom: 8px;
+            text-align: center;
+
+        }
+        .sidebar-left li a{
+            text-decoration: none;
+            color: white;
+            line-height: 40px;
+            display: block;
+            transition: all 0.2s ease;
+
+        }
+        .sidebar-left li:hover a{
+            background-color: #0099cc;
+        }
+        .sidebar-right li{
+            width: 100%;
+            height: 80px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .sidebar-right li a{
+            background-color: #F5F5F5;
+            text-decoration: none;
+            display: block;
+            line-height: 80px;
+            color: black;
+        }
+        /**/
+        .footer{
+            display: flex;
+
+            background-color: #222222;
+            height: 60px;
+            width: 100%;
+            justify-content: center;
+        }
+        .footer p{
+            text-align: center;
+            line-height: 60px;
+            font-size: 20px;
+        }
+        @media screen and (max-width: 768px){
+            .sidebar-left{
+                flex-basis: 100%;
+                flex-grow: 1;
+                background-color: #F1F1F1;
+                padding: 15px;
+            }
+            .content{
+                flex-basis: 100%;
+                flex-grow: 1;
+                padding: 15px;
+                overflow: auto;
+            }
+            .sidebar-right{
+                flex-basis: 100%;
+                flex-grow: 0;
+                padding: 15px;
+                background-color: #F1F1F1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="top-bar">
+            <div class="navbar">
+                <ul>
+                    <li><a href="#">Logo</a></li>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Project</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="navright">
+                <a href="#" class="login"><i class="fas fa-sign-in-alt"></i>Login</a>
+            </div>
+        </div>
+        <div class="main">
+            <div class="sidebar-left">
+                <ul>
+                    <li><a href="#">The Flight</a></li>
+                    <li><a href="#">The City </a></li>
+                    <li><a href="#">The Island</a></li>
+                    <li><a href="#">The Food </a></li>
+                </ul>
+            </div>
+            <div class="content">
+                <h1>Welcome</h1>
+                <p>
+                    Hi! Nice to see you all! I’m Linh Chi. I’m a student at Bình Định High School. I enjoy reading sci-fi books and scouting. My favourite subject is English. I am now focusing on improving my communication skills in English as I would like to study abroad after graduation. I think I am a sociable and talkative person. I really like talking to people and making friends. I hope we will have fun learning English together.
+
+                </p>
+                <p>
+                    My name is Linh. I'm 24 years old. I was born in Ha Tinh province but nơ I am living in Ha Noi. I graduted from VietNam National University in 2015. My major is Banking an Finance. After graduated, I have workes at Bac A bank and I have 3 experience years as a bank teller. I like watching reality TV shows on TV, especially sport shows.
+                </p>
+                <p>
+                    My name is Linh. I'm 24 years old. I was born in Ha Tinh province but nơ I am living in Ha Noi. I graduted from VietNam National University in 2015. My major is Banking an Finance. After graduated, I have workes at Bac A bank and I have 3 experience years as a bank teller. I like watching reality TV shows on TV, especially sport shows.
+                </p>
+                <p>
+                    My name is Linh. I'm 24 years old. I was born in Ha Tinh province but nơ I am living in Ha Noi. I graduted from VietNam National University in 2015. My major is Banking an Finance. After graduated, I have workes at Bac A bank and I have 3 experience years as a bank teller. I like watching reality TV shows on TV, especially sport shows.
+                </p>
+                <p>
+                    My name is Linh. I'm 24 years old. I was born in Ha Tinh province but nơ I am living in Ha Noi. I graduted from VietNam National University in 2015. My major is Banking an Finance. After graduated, I have workes at Bac A bank and I have 3 experience years as a bank teller. I like watching reality TV shows on TV, especially sport shows.
+                </p>
+                <p>
+                    My name is Linh. I'm 24 years old. I was born in Ha Tinh province but nơ I am living in Ha Noi. I graduted from VietNam National University in 2015. My major is Banking an Finance. After graduated, I have workes at Bac A bank and I have 3 experience years as a bank teller. I like watching reality TV shows on TV, especially sport shows.
+                </p>
+                <p>
+                    My name is Linh. I'm 24 years old. I was born in Ha Tinh province but nơ I am living in Ha Noi. I graduted from VietNam National University in 2015. My major is Banking an Finance. After graduated, I have workes at Bac A bank and I have 3 experience years as a bank teller. I like watching reality TV shows on TV, especially sport shows.
+                </p>
+            </div>
+            <div class="sidebar-right">
+                <div class="right-put">
+                    <ul>
+                        <li><a href="#">ADS</a></li>
+                        <li><a href="#">ADS</a></li>
+                    </ul>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="footer">
+            <p>Footer</p>
+        </div>
+    </div>
+</body>
+</html>
