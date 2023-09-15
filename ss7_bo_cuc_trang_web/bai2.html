@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            padding: 0 20px;
+            background-color: burlywood;
+        }
+
+        .item1 { grid-area: header;
+            background-color: #F8F8FF;
+            border-radius: 2px ;
+        }
+        .item2 { grid-area: head-link;
+            background-color: #F8F8FF;}
+
+
+
+
+        .grid-container {
+            display: grid;
+            grid-template-areas:
+                    'header header header header header header'
+                    'head-link head-link head-link head-link head-link head-link'
+                    'left left  main main main main'
+                    'footer footer footer footer footer footer';
+            grid-auto-rows: minmax(30px,auto);
+            grid-auto-columns: minmax(auto,400px);
+
+            gap: 10px;
+            /*background-color: #2196F3;*/
+            padding: 10px;
+        }
+
+        /*.grid-container > div {*/
+
+        /*    text-align: center;*/
+
+        /*    font-size: 20px;*/
+        /*}*/
+        /*IMAGES*/
+        .item1 .dad-img{
+
+            float: left;
+            width: 180px;
+        }
+        .item1 img{
+            width: 100%;
+            height: auto;
+        }
+
+        .item1 .son-img{
+            padding-top:10px ;
+            padding-left: 10px;
+        }
+
+        /*HEAD-LINK*/
+        div .mainmenu{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            text-align: center;
+
+        }
+        div .mainmenu li{
+            display: inline-block;
+
+        }
+        div .mainmenu li a{
+            text-decoration: none;
+            color: #000;
+            display: inline-block;
+            padding: 10px;
+        }
+        /*LEFT*/
+        .item3 { grid-area: left;
+            background-color: #F8F8FF;
+            width: 100%;
+            flex-shrink: 0;
+
+        }
+        div .left-content-dad{
+            width: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+
+        }
+        div .left-content-son{
+            display: block;
+            margin: 7px 0  ;
+            display: flex;
+            padding: 0 30px;
+            flex-direction: column;
+
+        }
+        div .left-content-dad video {
+            width: 100%;
+            height: 25%;
+            border-radius: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+
+        }
+        div .left-content-son span{
+            font-size: 18px;
+            font-weight: 600;
+        }
+        div .text-dad{
+            padding: 0 17px;
+        }
+
+        div .text-title-sing{
+            font-weight: 300;
+            font-size: 13px;
+            color:#727272;
+        }
+        div .text-title-singmysong{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+
+        }
+        div .text-title-singmysong{
+            font-weight: 300;
+            font-size: 13px;
+            color:#727272;
+        }
+        div .text-title-singmysong i{
+            font-size: 10px;
+
+            line-height: 10px;
+        }
+        /*.item3 .text-title-item3{*/
+        /*    white-space: nowrap;*/
+        /*    overflow: hidden;*/
+        /*       text-overflow: ellipsis;*/
+        /*    width: 600px;*/
+
+        /*}*/
+
+        /*MAIN*/
+
+        .item4 {
+            grid-area: main;
+            background-color: #FFFFFF;
+
+        }
+        div .right-content-dad video{
+            margin-top:10px ;
+            width: 100%;
+            height: 500px;
+
+        }
+        div .text-content{
+            text-align: left;
+            padding: 0 25px 25px 25px;
+
+        }
+        div .text-title{
+            font-weight: 500;
+            margin-bottom: 25px;
+        }
+        div .text-user{
+            display: flex;
+            align-items: center;
+
+        }
+        div .text-user-avatar{
+            width: 40px;
+            height: 40px;
+            border-radius: 100%;
+            flex-shrink: 0;
+        }
+        div .text-user-info{
+            padding-left: 20px;
+
+
+        }
+        div .text-user-name{
+            margin: 0;
+        }
+        div .text-user-register{
+            border-radius: 20px;
+            margin-left: 35px;
+            height: 40px;
+            width: 15%;
+            font-size: 20px;
+            line-height: 40px;
+            background-color: black;
+            cursor: pointer;
+            text-align: center;
+
+        }
+        div .text-user-register a{
+            text-decoration: none;
+            color: white;
+
+        }
+        div .text-user-game{
+            color: #999;
+            font-weight: 300;
+            font-size: 13px;
+        }
+        div .text-right{
+            margin-left: auto;
+            display: flex;
+        }
+        div .text-right-down{
+            border-radius: 20px;
+            height: 40px;
+            width: 50%;
+            font-size: 20px;
+            line-height: 40px;
+            cursor: pointer;
+            text-align: center;
+            border: 0.5px solid grey;
+            background-color: #F2F2F2;
+            margin-right: 10px;
+        }
+
+        div .text-right-share{
+
+            border-radius: 20px;
+            height: 40px;
+            width: 150px;
+            font-size: 20px;
+            line-height: 40px;
+            cursor: pointer;
+            text-align: center;
+            border: 0.5px solid grey;
+            background-color: #F2F2F2;
+        }
+        div .text-right-share a{
+            text-decoration: none;
+            color: #0F0F0F;
+            font-weight: 300;
+        }
+        div .text-right-down a{
+            text-decoration: none;
+            color: #0F0F0F;
+            font-weight: 300;
+        }
+
+        div .text-botom{
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid gainsboro;
+            background-color: #F2F2F2;
+            display: flex;
+            flex-direction:column ;
+        }
+        div .text-botom a{
+            text-decoration: none;
+            color: #4A89DC;
+        }
+        div .text-botom i{
+            color: #030507;
+            font-size: 10px;
+
+            line-height: 10px;
+        }
+        div .text-detail{
+            display: block;
+        }
+        div .text-detail span{
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        div p{
+            margin: 5px 0;
+            font-size: 16px;
+        }
+        div .text-song-name{
+            margin-bottom: 10px;
+        }
+        div .text-welcome{
+            margin-bottom: 10px;
+        }
+        div .text-Official{
+            margin-bottom: 10px;
+        }
+        div .text-fb-youtobe{
+            margin-top: 10px;
+        }
+
+        /*FOOTER*/
+        .item5 {
+            grid-area: footer;
+            background-color: #F8F8FF;
+        }
+        .item5 p{
+            text-align: center;
+            height: 50px;
+            line-height: 50px;
+        }
+    </style>
+</head>
+<body>
+<div class="grid-container item" >
+    <div class="item1">
+        <div class="dad-img">
+            <div class="son-img">
+                <a href="#"><img src="images/Logo_of_YouTube_(2013-2015).svg.png" alt="fall" width="300px" height="120px"></a>
+            </div>
+        </div>
+    </div>
+    <div class="item2">
+        <div class="head-link">
+            <ul class="mainmenu">
+                <li><a href="">Nhạc Chill</a></li>
+                <li><a href="">Nhạc Pop</a></li>
+                <li><a href="">Nhạc Rock</a></li>
+                <li><a href="">Nhạc EDM</a></li>
+                <li><a href="">Nhạc Remix</a></li>
+
+            </ul>
+        </div>
+    </div>
+    <div class="item3">
+        <div class="left-content-dad">
+            <div class="left-content-son">
+                <video  width="200px" controls autoplay>
+                    <source src="images/MakingMyWay.mp4" type="video/mp4">
+                </video>
+                <div class="text-dad">
+                    <span class="text-title-item3">Making My Way Remix - (JAPAN Remix) </span>
+                    <div class="text-title-sing">TD Muzik</div>
+                    <div class="text-title-singmysong">
+                        <div class="text-watching">
+                            651 N lượt xem
+                        </div>
+                        <div class="text-date">
+                            <i class="fa-duotone fa-circle-dot"></i> 11 ngày trước
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="left-content-son">
+                <video  width="200px" controls autoplay>
+                    <source src="images/Lý%20Do%20Là%20Gì%20(AIR%20Remix)%20-%20Nguyễn%20Vĩ%20♫%20Nước%20Mắt%20Anh%20Tuôn%20Theo%20Màn%20Đêm%20Buông%20Xuống%20Remix%20TikTok.mp4" type="video/mp4">
+                </video>
+                <div class="text-dad">
+                    <span  class="text-title-item3">Lý Do Là Gì (AIR Remix)</span>
+                    <div class="text-title-sing">TD Muzik</div>
+                    <div class="text-title-singmysong">
+                        <div class="text-watching">
+                            651 N lượt xem
+                        </div>
+                        <div class="text-date">
+                            <i class="fa-duotone fa-circle-dot"></i> 21 ngày trước
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="left-content-son">
+                <video  width="200px" controls autoplay>
+                    <source src="images/Set%20Fire%20To%20The%20Rain%20x%20Fake%20Love%20(JAPAN%20Remix)%20-%20Bản%20Nhạc%20Ngoại%20Remix%20Dành%20Cho%20Đá%20Thủ%20Hot%20Tiktok.mp4" type="video/mp4">
+                </video>
+                <div class="text-dad">
+                    <span  class="text-title-item3">Cảm Ơn Và Xin Lỗi </span>
+                    <div class="text-title-sing">Music Chill and Free</div>
+                    <div class="text-title-singmysong">
+                        <div class="text-watching">
+                            1.0432.000 N lượt xem
+                        </div>
+                        <div class="text-date">
+                            <i class="fa-duotone fa-circle-dot"></i> 31 ngày trước
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="left-content-son">
+                <video  width="200px" controls autoplay>
+                    <source src="images/THÁNG%20TƯ%20LÀ%20LỜI%20NÓI%20DỐI%20CỦA%20EM%20REMIX%20-%20NHẠC%20THỊNH%20HÀNH%20TIKTOK%202023%20-%20The%20DucDat.mp4" type="video/mp4">
+                </video>
+                <div class="text-dad">
+                    <span  class="text-title-item3">THÁNG TƯ LÀ LỜI NÓI DỐI CỦA EM REMIX </span>
+                    <div class="text-title-sing">Maz Media Music</div>
+                    <div class="text-title-singmysong">
+                        <div class="text-watching">
+                            212 N lượt xem
+                        </div>
+                        <div class="text-date">
+                            <i class="fa-duotone fa-circle-dot"></i> 09 ngày trước
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="item4">
+        <div class="right-content-dad">
+            <div class="right-content-son">
+                <video   controls autoplay>
+                    <source src="images/Live%20Version%20VÀ%20NGÀY%20NÀO%20ĐÓ%20-%20Trung%20Quân.mp4" type="video/mp4">
+
+                </video>
+                <div class="text-content">
+                    <div class="text-top">
+                        <h3 class="text-title">[OFFICIAL AUDIO] CÁNH ĐỒNG YÊU THƯƠNG - TRUNG QUÂN</h3>
+                        <div class="text-user">
+                            <img class="text-user-avatar" src="images/trungquan.jpg">
+                            <div class="text-user-info">
+                                <div class="text-user-top">
+                                    <h4 class="text-user-name">TRUNG QUÂN</h4>
+                                </div>
+                                <div class="text-user-game">362 N Người Đăng ký</div>
+                            </div>
+                            <div class="text-user-register"><a href="#">Đăng ký</a></div>
+                            <div class="text-right">
+                                <div class="text-right-down"><a href="#"><i class="fa-thin fa-arrow-down-to-line"></i> Tải xuống</a></div>
+                                <div class="text-right-share">
+                                    <a href="#"><i class="fa-thin fa-share"></i> Chia Sẽ</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="text-botom">
+                        <div class="text-detail">
+                            <span>1.516.943 </span>
+                            <span> lượt xem </span>
+                            <span> 4 thg 12, 2022</span>
+                            <span><a href="#">#trungquan</a></span>
+                            <span><a href="#">#daumua</a></span>
+                        </div>
+                        <div class="text-song-name">
+                            <p>Bài hát: Live Version VÀ NGÀY NÀO ĐÓ - Trung Quân </p>
+                            <p>Sáng tác JB Phương</p>
+                            <p>Band nhạc The Fingers</p>
+                            <p>Trung Quân live tại Dear Ocean by <a href="#">@TheBrosEntertainment</a> 2022</p>
+                        </div>
+                        <div class="text-welcome">
+                            <p>Chào mừng bạn đến với Kênh YouTube chính thức của ca sĩ Trung Quân!
+                                Welcome to Trung Quan's Official YouTube Channel !</p>
+                        </div>
+                        <div class="text-Official">
+                            <p><i class="fa-solid fa-play" style="color: #030507;"></i> Hãy nhấn ĐĂNG KÝ để là người đầu tiên xem CÁC SẢN PHẨM MỚI NHẤT của Trung Quân.
+                                <a href="#">http://bit.ly/TrungQuanOfficial</a></p>
+                        </div>
+                        <div class="text-folow">
+                            <p><i class="fa-solid fa-play" style="color: #030507;"></i> Theo dõi Trung Quân: </p>
+                        </div>
+                        <div class="text-fb-youtobe">
+                            <p><i class="fa-solid fa-music" style="color: #000000;"></i> Youtube: <a href="#">http://bit.ly/TrungQuanOfficial</a></p>
+                            <p><i class="fa-solid fa-music" style="color: #000000;"></i> Facebook: <a href="#">https://www.facebook.com/quancartoon</a></p>
+                            <p><i class="fa-solid fa-music" style="color: #000000;"></i> Instagram: <a href="#">https://instagram.com/quan.cartoon/</a></p>
+                            <p><i class="fa-solid fa-music" style="color: #000000;"></i> Soundcloud: <a href="#">https://www.facebook.com/TrungQuanOff...</a></p>
+                            <p><i class="fa-solid fa-music" style="color: #000000;"></i> Twitter: <a href="#">https://twitter.com/quancartoon</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="item5">
+        <p>@2023 - Thiết kế web bởi trang youtobe.com</p>
+    </div>
+</div>
+</body>
+</html>
