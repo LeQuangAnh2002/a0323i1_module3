@@ -2,9 +2,40 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="sidebar_menu.css">
+
 </head>
 <body>
-$END$
+<div class="main-section">
+    <div class="toggle">
+        <div class="hamburger">
+            <span></span>
+        </div>
+    </div>
+    <div class="sidebar">
+        <h2>Menu</h2>
+        <nav class="navbar">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Services</a>
+            <a href="#">Contact</a>
+            <a href="#">Blog</a>
+        </nav>
+    </div>
+    <div class="content">
+        <h1>Welcome to Siderbar Menu</h1>
+        <p>Cách tạo thanh điều hướng bên đáp ứng bằng HTML CSS & Javascript - Trang web menu thanh bên Trong hướng dẫn này, chúng ta sẽ tìm hiểu cách tạo thanh điều hướng bên đáp ứng bằng HTML, CSS & Javascript. Thanh điều hướng bên đáp ứng là một thành phần giao diện người dùng quan trọng cho phép người dùng duyệt nội dung trên trang web.</p>
+    </div>
+</div>
+<script type="text/javascript">
+        const toggle = document.querySelector('.toggle');
+        const  sidebar = document.querySelector('.sidebar');
+        toggle.addEventListener('click', ()=>{
+            toggle.classList.toggle('active');
+            sidebar.classList.toggle('active');
+        })
+</script>
+
 </body>
 </html>
