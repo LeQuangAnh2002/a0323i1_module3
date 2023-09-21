@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a18be5e7-7ccb-4633-bb60-c8332b589825" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../demo/demo.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../web_ban_hang/Build-Ecommerce-Website-With-HTML-CSS-JavaScript-main/.idea/Build-Ecommerce-Website-With-HTML-CSS-JavaScript-main.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ss7_bo_cuc_trang_web/bai1.html" beforeDir="false" afterPath="$PROJECT_DIR$/../ss7_bo_cuc_trang_web/bai1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web_ban_hang/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../web_ban_hang/.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web_ban_hang/.idea/web_ban_hang.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../web_ban_hang/.idea/web_ban_hang.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web_ban_hang/xu_ly_bao_loi/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../web_ban_hang/xu_ly_bao_loi/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web_ban_hang/xu_ly_bao_loi/validator.js" beforeDir="false" afterPath="$PROJECT_DIR$/../web_ban_hang/xu_ly_bao_loi/validator.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$/ProductDiscountCalculator">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="ProductDiscountCalculator" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="2Vi6EomRg5F4QSP21Ivl10WLTPQ" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showScratchesAndConsoles" value="false" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "D:/CodeGym/a0323i1_module3/ss9_tong_quan_ung_dung_web",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "com.poratu.idea.plugins.tomcat.setting.TomcatServersConfigurable",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a18be5e7-7ccb-4633-bb60-c8332b589825" name="Changes" comment="" />
+      <created>1695306444502</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1695306444502</updated>
+      <workItem from="1695306445726" duration="174000" />
+      <workItem from="1695306668492" duration="95000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
