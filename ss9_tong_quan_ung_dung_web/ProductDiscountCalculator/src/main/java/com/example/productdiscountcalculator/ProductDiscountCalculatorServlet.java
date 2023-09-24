@@ -10,7 +10,7 @@ import java.io.PrintWriter;
 public class ProductDiscountCalculatorServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+//            response.sendRedirect("index.jsp");
     }
 
     @Override

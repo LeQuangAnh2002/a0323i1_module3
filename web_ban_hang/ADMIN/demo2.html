@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: 'Poppisn', sans-serif;
+        }
+        .last-appointments{
+            padding: 20px;
+            width: 100%;
+        }
+        .heading{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #444;
+        }
+        .btn{
+            padding: 5px 10px;
+            background-color: coral;
+            color: #fff;
+            text-decoration: none;
+            text-align: center;
+        }
+        table{
+            margin-top: 10px;
+            width: 100%;
+            border-collapse: collapse;
+        }
+        thead td{
+            font-weight: 600;
+            color: #333;
+
+        }
+        table tr{
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+        table tbody tr:hover{
+            background: #444;
+            color: #fff;
+        }
+        table tbody tr:last-child{
+            border-bottom: none;
+        }
+        td{
+            padding: 9px 5px;
+        }
+        td i{
+            padding: 7px;
+            color: #fff;
+            border-radius: 50px;
+        }
+        .last-appointments table tbody td{
+            white-space: nowrap;
+        }
+        td .fa-eye{
+            background: #32bea6;
+        }
+        td .fa-edit{
+            background: #63b4f4;
+        }
+        td .fa-trash-alt{
+            background: #ed5564;
+        }
+    </style>
+
+</head>
+<body>
+<div class="last-appointments">
+    <div class="heading">
+        <h2>Appointments</h2>
+        <a href="#" class="btn">View All</a>
+    </div>
+    <table class="appointment">
+        <thead>
+        <td>Name</td>
+        <td>Doctor</td>
+        <td>Condition</td>
+        <td>Actions</td>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Liam Smith Doe</td>
+            <td>Dr. Benjamin</td>
+            <td>Fracture</td>
+            <td>
+                <i class="far fa-eye"></i>
+                <i class="far fa-edit"></i>
+                <i class="far fa-trash-alt"></i>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+</body>
+</html>

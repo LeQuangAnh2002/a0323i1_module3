@@ -5,7 +5,7 @@
     <title>JSP - Hello World</title>
 </head>
 <body>
-<form method="post" action="/calculator-product">
+<form method="post" action="calculator-product">
     <div>
         <H1>Product Discount Calculator </H1>
         <input type="text" name="product-name" placeholder="Product Description">
