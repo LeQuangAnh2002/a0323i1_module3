@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Popins",sans-serif;
+        }
+        body{
+            overflow-x:hidden ;
+        }
+        .container{
+            width: 100%;
+            position: relative;
+        }
+        .sidebar{
+            position: fixed;
+            width: 300px;
+            height: 100vh;
+            background-color: #4478bf;
+            overflow-x: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+        .sidebar ul li{
+            width: 100%;
+            list-style-type: none;
+
+        }
+        .sidebar ul li:hover{
+            background: #444;
+        }
+        .sidebar ul li:first-child{
+            line-height: 60px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #fff;
+            font-weight: 700;
+        }
+        .sidebar ul li:first-child:hover{
+            background: none;
+        }
+        .sidebar ul li a{
+            width: 100%;
+            text-decoration: none;
+            color: #fff;
+            height: 60px;
+            display: flex;
+            align-items: center;
+        }
+        .sidebar ul li a i{
+            min-width: 60px;
+            font-size: 24px;
+            text-align: center;
+        }
+        .sidebar ul li a .title{
+            padding: 0 10px;
+            font-size: 20px;
+            opacity: 1;
+        }
+        .main{
+            position: absolute;
+            width: calc(100% - 300px);
+            min-height: 100vh;
+            left: 300px;
+            background: #f5f5f5;
+        }
+        .main .top-bar{
+            position: fixed;
+            width: calc(100% - 300px);
+            height: 60px;
+            background: #fff;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            align-items: center;
+            color: #444;
+            padding: 0 20px;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        .top-bar .user i{
+            float: right;
+            padding-right: 20px;
+            font-weight: 700;
+            font-size: 22px;
+        }
+        .top-bar .search{
+            position: relative;
+            max-width: 400px;
+        }
+        .top-bar .search input{
+            width: 100%;
+            height: 40px;
+            padding: 0 40px;
+            font-size: 16px;
+            outline: none;
+            border: none;
+            background: #f5f5f5;
+        }
+        .top-bar .search i{
+            position: absolute;
+            top: 12px;
+            right: 15px;
+            cursor: pointer;
+            font-size: 18px;
+
+
+        }
+        .tables{
+            margin: 100px auto;
+            width: 90%;
+            padding: 35px 20px;
+            background: #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .heading{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            color: #444;
+        }
+        .btn{
+            color: #fff;
+            padding: 5px 10px;
+            text-decoration: none;
+            background: coral;
+            text-align: center;
+            line-height: 22px;
+        }
+        table{
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table tr{
+            border-bottom: 1px solid rgba(0,0,0,0.2);
+        }
+        table tbody tr:last-child{
+            border-bottom: none;
+        }
+        table thead td{
+            color: #333;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        table tbody tr:hover{
+            background: #333;
+            color: #fff;
+            cursor: pointer;
+        }
+        table td{
+            padding: 10px 5px;
+            white-space: nowrap;
+        }
+        table td i{
+            color: #fff;
+            padding: 7px;
+            border-radius: 50px;
+        }
+        td .fa-eye{
+            background: #32bea6;
+        }
+        td .fa-edit{
+            background: #63b4f4;
+        }
+        td .fa-trash-alt{
+            background: #ed5564;
+        }
+        @media screen and (max-width: 768px){
+            .container td:nth-child(3){
+                display: none;
+            }
+        }
+        @media only screen and (max-width: 1090px) {
+            .sidebar{
+                width: 60px;
+
+            }
+            .main{
+                width: calc(100% - 60px);
+                left: 60px;
+
+            }
+            .main .top-bar{
+                width: calc(100% - 60px);
+
+            }
+            .sidebar ul li a .title{
+                opacity: 0;
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="sidebar">
+        <ul>
+            <li>
+                <a href="#">
+                    <i class="fas fa-clinic-medical"></i>
+                    <div class="title">Dashboard</div>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-users"></i>
+                    <div class="title">Employee</div>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-user"></i>
+                    <div class="title">Customer</div>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-business-time"></i>
+                    <div class="title">Service</div>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-file-contract"></i>
+                    <div class="title">Contract</div>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-cog"></i>
+                    <div class="title">Settings</div>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-question"></i>
+                    <div class="title">Help</div>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="main">
+        <div class="top-bar">
+            <div class="search">
+                <input type="text" name="search" id="search" placeholder="Search here">
+                <label for="search"><i class="fas fa-search"></i></label>
+            </div>
+            <div class="user">
+                <i class="fas fa-bell"></i>
+            </div>
+        </div>
+        <div class="tables">
+            <div class="heading">
+                <h2>User List</h2>
+                <a href="#" class="btn">Create user</a>
+            </div>
+            <div class="content">
+                <table class="users">
+                    <thead>
+                    <td>ID</td>
+                    <td>Name</td>
+                    <td>Email</td>
+                    <td>Country</td>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Liam Smith Doe</td>
+                        <td>Dr. Benjamin</td>
+                        <td>Fracture</td>
+                        <td>
+                            <i class="far fa-eye"></i>
+                            <i class="far fa-edit"></i>
+                            <i class="far fa-trash-alt"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Liam Smith Doe</td>
+                        <td>Dr. Benjamin</td>
+                        <td>Fracture</td>
+                        <td>
+                            <i class="far fa-eye"></i>
+                            <i class="far fa-edit"></i>
+                            <i class="far fa-trash-alt"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Liam Smith Doe</td>
+                        <td>Dr. Benjamin</td>
+                        <td>Fracture</td>
+                        <td>
+                            <i class="far fa-eye"></i>
+                            <i class="far fa-edit"></i>
+                            <i class="far fa-trash-alt"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Liam Smith Doe</td>
+                        <td>Dr. Benjamin</td>
+                        <td>Fracture</td>
+                        <td>
+                            <i class="far fa-eye"></i>
+                            <i class="far fa-edit"></i>
+                            <i class="far fa-trash-alt"></i>
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

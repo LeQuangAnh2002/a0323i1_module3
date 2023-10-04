@@ -19,6 +19,7 @@ body{
     overflow-x: hidden;
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     z-index: 2;
+    transition: all 0.5s ease;
 }
 .sidebar ul li{
     width: 100%;
