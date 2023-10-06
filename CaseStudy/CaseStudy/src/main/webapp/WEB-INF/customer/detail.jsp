@@ -1,7 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
+<%--
+  Created by IntelliJ IDEA.
+  User: ANH
+  Date: 10/6/2023
+  Time: 12:04 AM
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<html>
 <head>
-    <meta charset="UTF-8">
     <title>Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
@@ -152,6 +159,9 @@
             padding: 8px 10px;
             transition: all 0.3s ease;
         }
+        .wrapper .form .input_field a{
+            text-decoration: none;
+        }
         .wrapper .form .input_field .btn{
             width: 100%;
             padding: 8px 10px;
@@ -162,6 +172,8 @@
             cursor: pointer;
             border-radius: 3px;
             outline: none;
+            text-align: center;
+
         }
         .wrapper .form .input_field .customer_select{
             position: relative;
@@ -278,37 +290,65 @@
 
         <div class="wrapper">
             <div class="title">Form Input User </div>
-            <form class="form" >
+            <form class="form" action="/customer" method="post">
                 <div class="input_field">
                     <label>User Name</label>
-                    <input type="text" name="name" class="input">
-                </div>
-                <div class="input_field">
-                    <label>User Email</label>
-                    <input type="text" name="email" class="input">
-                </div>
-                <div class="input_field">
-                    <label>Country</label>
-                    <input type="text" name="country" class="input">
+                    <input type="text" name="name" class="input" value="${customer.customerName}" readonly>
                 </div>
                 <div class="input_field">
                     <label>Birthday</label>
-                    <input type="date" name="date" class="input"  >
+                    <input type="date" name="birthday" class="input"  value="${customer.customerBirthday}" readonly>
                 </div>
                 <div class="input_field">
                     <label>Gender</label>
                     <div class="customer_select">
-                        <select>
-                            <option value="">Select</option>
-                            <option value="male">Male</option>
+                        <select name="gender">
+                            <option value="" selected>Select</option>
+                            <c:if test="${customer.customerGender == true}" >
+                            <option value="male" selected>Male</option>
                             <option value="female">Female</option>
+                            </c:if>
+                            <c:if test="${customer.customerGender == false}">
+                                <option value="male" >Male</option>
+                                <option value="female" selected>Female</option>
+                            </c:if>
                         </select>
                     </div>
                 </div>
                 <div class="input_field">
-                    <a type="submit" value="Enter" class="btn">Come Back</a>
+                    <label>Card ID</label>
+                    <input type="text" name="cardID" class="input" value="${customer.customerIDCard}" readonly>
                 </div>
-
+                <div class="input_field">
+                    <label>User Phone</label>
+                    <input type="text" name="phone" class="input" value="${customer.customerPhone}" readonly>
+                </div>
+                <div class="input_field">
+                    <label>User Email</label>
+                    <input type="text" name="email" class="input" value="${customer.customerEmail}" readonly>
+                </div>
+                <div class="input_field">
+                    <label>User Address</label>
+                    <input type="text" name="address" class="input" value="${customer.customerAddress}" readonly>
+                </div>
+                <div class="input_field">
+                    <label>Type Customer</label>
+                    <div class="customer_select">
+                        <select name="typeCustomer">
+                            <c:forEach items="${customerTypes}" var="type">
+                                <c:if test="${customer.customerType.customerTypeID == type.customerTypeID}">
+                                <option value="${type.customerTypeID}" selected>${type.customerTypeName}</option>
+                                </c:if>
+                                <c:if test="${customer.customerType.customerTypeID != type.customerTypeID}">
+                                    <option value="${type.customerTypeID}" >${type.customerTypeName}</option>
+                                </c:if>
+                            </c:forEach>
+                        </select>
+                    </div>
+                </div>
+                <div class="input_field">
+                    <a href="/customer?aciton=list" class="btn">Come Back</a>
+                </div>
             </form>
         </div>
 

@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <title>Title</title>
@@ -110,12 +111,20 @@
       outline: none;
 
     }
-    .main .top-bar .search i{
+    .main .top-bar .search label{
       position: absolute;
-      top: 10px;
-      right: 12px;
+      top: 0px;
+      right: 0px;
       font-size: 18px;
       cursor: pointer;
+    }
+    .main .top-bar .search label .input-search{
+      border-radius: 3px;
+      cursor: pointer;
+      background: coral;
+    }
+    .main .top-bar .search label .input-search:hover{
+      background: #E85925FF;
     }
     .main .top-bar .user i{
       float: right;
@@ -266,8 +275,14 @@
   <div class="main">
     <div class="top-bar">
       <div class="search">
+        <form action="/customer" method="get">
         <input type="text" name="search" id="search" placeholder="Search here">
-        <label for="search"><i class="fas fa-search"></i></label>
+        <label for="search">
+
+          <input type="submit" value="Search" class="input-search">
+         <input type="hidden" name="action" value="search">
+        </label>
+        </form>
       </div>
       <div class="user">
         <i class="fas fa-user"></i>
@@ -275,8 +290,8 @@
     </div>
     <div class="tables">
       <div class="heading">
-        <h2>User List</h2>
-        <a href="#" class="btn">Create user</a>
+        <h2>Customer List</h2>
+        <a href="/customer?action=create" class="btn">Create customer</a>
       </div>
       <div class="content">
         <table class="users">
@@ -285,11 +300,8 @@
           <td> Name</td>
           <td>Birthday</td>
           <td>Gender</td>
-          <td>Id Card</td>
           <td>Phone</td>
           <td>Email</td>
-          <td>Address</td>
-          <td>Customer Type</td>
           <td>Action</td>
           </thead>
           <tbody>
@@ -299,20 +311,20 @@
             <tr>
               <td>${c.customerID}</td>
               <td>${c.customerName}</td>
-              <td>${c.customerBirthday}</td>
-              <td>${c.customerGender}</td>
-              <td>${c.customerIDCard}</td>
+              <td><fmt:formatDate value="${c.customerBirthday}" pattern="dd-MM-yyyy"></fmt:formatDate></td>
+              <c:if test="${c.customerGender == true}">
+              <td>Male</td>
+              </c:if>
+              <c:if test="${c.customerGender == false}">
+                <td>Female</td>
+              </c:if>
               <td>${c.customerPhone}</td>
-              <td>${c.customerEmail}</td>
-              <td>${c.customerAddress}</td>
+
               <td>${c.customerType.customerTypeName}</td>
               <td>
                 <a href="/customer?action=detail&id=${c.customerID}"><i class="far fa-eye"></i></a>
                 <a href="/customer?action=edit&id=${c.customerID}"> <i class="far fa-edit"></i></a>
                 <a href="/customer?action=delete&id=${c.customerID}"><i class="far fa-trash-alt"></i></a>
-
-
-
               </td>
             </tr>
           </c:forEach>

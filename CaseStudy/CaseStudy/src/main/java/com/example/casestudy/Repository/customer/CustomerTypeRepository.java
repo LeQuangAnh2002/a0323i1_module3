@@ -24,7 +24,8 @@ public class CustomerTypeRepository implements ICustomerTypeRepository{
         String sql = "Select * from customer_type where customer_type_id = ?";
         try(
                 Connection connection = JDBCUtil.getConnection();
-                PreparedStatement preparedStatement = connection.prepareStatement(sql);){
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);)
+        {
                 preparedStatement.setInt(1,id);
                 ResultSet resultSet = preparedStatement.executeQuery();
                 while (resultSet.next()){
@@ -47,6 +48,7 @@ public class CustomerTypeRepository implements ICustomerTypeRepository{
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
                 ){
             ResultSet rs = preparedStatement.executeQuery();
+
             while (rs.next()){
                 int customerTypeId = rs.getInt("customer_type_id");
                 String customerTypeName = rs.getString("customer_type_name");
