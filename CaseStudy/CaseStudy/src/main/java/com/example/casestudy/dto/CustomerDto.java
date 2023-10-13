@@ -1,11 +1,13 @@
-package com.example.casestudy.Model;
+package com.example.casestudy.dto;
+
+import com.example.casestudy.Model.CustomerType;
 
 import java.util.Date;
 
-public class Customer {
+public class CustomerDto {
     private int customerID;
     private String customerName;
-    private Date customerBirthday;
+    private String customerBirthday;
     private Boolean customerGender;
     private String customerIDCard;
     private String customerPhone;
@@ -14,10 +16,10 @@ public class Customer {
     private CustomerType customerType;
     private boolean status;
 
-    public Customer() {
+    public CustomerDto() {
     }
 
-    public Customer(int customerID, String customerName, Date customerBirthday, Boolean customerGender, String customerIDCard, String customerPhone, String customerEmail, String customerAddress, CustomerType customerType, boolean status) {
+    public CustomerDto(int customerID, String customerName, String customerBirthday, Boolean customerGender, String customerIDCard, String customerPhone, String customerEmail, String customerAddress, CustomerType customerType, boolean status) {
         this.customerID = customerID;
         this.customerName = customerName;
         this.customerBirthday = customerBirthday;
@@ -29,7 +31,7 @@ public class Customer {
         this.customerType = customerType;
         this.status = status;
     }
-    public Customer(String customerName, Date customerBirthday, Boolean customerGender, String customerIDCard, String customerPhone, String customerEmail, String customerAddress, CustomerType customerType, boolean status) {
+    public CustomerDto( String customerName, String customerBirthday, Boolean customerGender, String customerIDCard, String customerPhone, String customerEmail, String customerAddress, CustomerType customerType, boolean status) {
         this.customerName = customerName;
         this.customerBirthday = customerBirthday;
         this.customerGender = customerGender;
@@ -57,11 +59,11 @@ public class Customer {
         this.customerName = customerName;
     }
 
-    public Date getCustomerBirthday() {
+    public String getCustomerBirthday() {
         return customerBirthday;
     }
 
-    public void setCustomerBirthday(Date customerBirthday) {
+    public void setCustomerBirthday(String customerBirthday) {
         this.customerBirthday = customerBirthday;
     }
 

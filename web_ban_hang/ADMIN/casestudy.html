@@ -172,6 +172,38 @@
         td .fa-trash-alt{
             background: #ed5564;
         }
+
+        .page{
+            margin-top: 20px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+        .pagination{
+            display: inline-block;
+        }
+        .pagination > li{
+            float: left;
+            list-style-type: none;
+            cursor: pointer;
+        }
+        .pagination >li > a{
+
+            padding: 6px 12px;
+            line-height: 1.5;
+            color: #337ab7;
+            text-decoration: none;
+            background-color: #fff;
+            font-size: 18px;
+            font-weight: 600;
+
+        }
+        .pagination >li:hover > a{
+            color: #fff;
+            background-color: #337ab7;
+
+        }
+
         @media screen and (max-width: 768px){
             .container td:nth-child(3){
                 display: none;
@@ -314,6 +346,16 @@
 
                     </tbody>
                 </table>
+            </div>
+            <div class="page">
+                <ul class="pagination">
+                   <li><a>1</a></li>
+                   <li><a>2</a></li>
+                   <li><a>3</a></li>
+                   <li><a>4</a></li>
+                   <li><a>5</a></li>
+                   <li><a>6</a></li>
+                </ul>
             </div>
         </div>
     </div>

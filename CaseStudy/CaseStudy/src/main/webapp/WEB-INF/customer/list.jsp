@@ -25,6 +25,10 @@
 
 
     }
+    .active {
+      color: #fff !important;
+      background-color: #337ab7 !important;
+    }
     .container{
       width: 100%;
       position: relative;
@@ -199,6 +203,34 @@
     td .fa-trash-alt{
       background: #ed5564;
     }
+    .page{
+      margin-top: 20px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+    }
+    .pagination{
+      display: inline-block;
+    }
+    .pagination > li{
+      float: left;
+      list-style-type: none;
+      cursor: pointer;
+    }
+    .pagination >li > a{
+
+      padding: 6px 12px;
+      line-height: 1.5;
+      color: #337ab7;
+      text-decoration: none;
+      background-color: #fff;
+      font-size: 18px;
+      font-weight: 600;
+    }
+    .pagination >li:hover > a{
+      color: #fff;
+      background-color: #337ab7;
+    }
     @media screen and (max-width: 768px){
       .container td:nth-child(3),.container td:nth-child(4){
         display: none;
@@ -222,6 +254,7 @@
         opacity: 0;
       }
     }
+
   </style>
 </head>
 <body>
@@ -334,6 +367,18 @@
         </table>
 
       </div>
+        <div class="page">
+          <ul class="pagination">
+            <c:forEach begin="1" end="${pages}" var="p">
+              <c:if test="${number == p}">
+                <li><a href="/customer?action=list&pages=${p}" class="active">${p}</a></li>
+              </c:if>
+              <c:if test="${number != p}">
+                <li><a href="/customer?action=list&pages=${p}">${p}</a></li>
+              </c:if>
+            </c:forEach>
+          </ul>
+        </div>
     </div>
 
   </div>

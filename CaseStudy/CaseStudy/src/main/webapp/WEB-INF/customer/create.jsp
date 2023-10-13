@@ -285,20 +285,30 @@
         </div>
 
         <div class="wrapper">
+            <c:if test="${errorMessages != null}">
+                <div style=" color: red; background-color: lightblue; padding: 20px;" >
+                    <ul>
+                        <c:forEach items="${errorMessages}" var="e">
+                            <li>${e}</li>
+                        </c:forEach>
+                    </ul>
+                </div>
+            </c:if>
             <div class="title">Form Input User </div>
             <form class="form" action="/customer" method="post">
                 <div class="input_field">
                     <label>User Name</label>
-                    <input type="text" name="name" class="input">
+                    <input type="text" name="name" class="input" value="${customer.customerName}" required>
                 </div>
                 <div class="input_field">
                     <label>Birthday</label>
-                    <input type="date" name="birthday" class="input"  >
+                    <input type="date" name="birthday" class="input" value="${customer.customerBirthday}" required>
+
                 </div>
                 <div class="input_field">
                     <label>Gender</label>
                     <div class="customer_select">
-                        <select name="gender">
+                        <select name="gender" required>
                             <option value="" selected>Select</option>
                             <option value="male" >Male</option>
                             <option value="female">Female</option>
@@ -307,26 +317,31 @@
                 </div>
                 <div class="input_field">
                     <label>Card ID</label>
-                    <input type="text" name="cardID" class="input">
+                    <input type="text" name="cardID" class="input" value="${customer.customerIDCard}" required>
                 </div>
                 <div class="input_field">
                     <label>User Phone</label>
-                    <input type="text" name="phone" class="input">
+                    <input type="text" name="phone" class="input" value="${customer.customerPhone}" required>
                 </div>
                 <div class="input_field">
                     <label>User Email</label>
-                    <input type="text" name="email" class="input">
+                    <input type="text" name="email" class="input" value="${customer.customerEmail}" required>
                 </div>
                 <div class="input_field">
                     <label>User Address</label>
-                    <input type="text" name="address" class="input">
+                    <input type="text" name="address" class="input" value="${customer.customerAddress}" required>
                 </div>
                 <div class="input_field">
                     <label>Type Customer</label>
                     <div class="customer_select">
-                        <select name="typeCustomer">
+                        <select name="typeCustomer" required>
                             <c:forEach items="${customerTypes}" var="type">
-                                <option value="${type.customerTypeID}" >${type.customerTypeName}</option>
+                                <c:if test="${customer.customerType.customerTypeID == type.customerTypeID}">
+                                    <option value="${type.customerTypeID}" selected>${type.customerTypeName}</option>
+                                </c:if>
+                                <c:if test="${customer.customerType.customerTypeID != type.customerTypeID}">
+                                    <option value="${type.customerTypeID}" >${type.customerTypeName}</option>
+                                </c:if>
                             </c:forEach>
                         </select>
                     </div>

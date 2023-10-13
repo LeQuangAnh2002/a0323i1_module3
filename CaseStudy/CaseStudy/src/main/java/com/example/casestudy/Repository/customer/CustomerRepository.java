@@ -176,7 +176,7 @@ public class CustomerRepository implements ICustomerRepository{
 
     @Override
     public int getNumberPage() {
-        String sql = "SELECT count(*) FROM customer;";
+        String sql = "SELECT count(*) FROM customer where status = 1;";
         try(
                 Connection connection = JDBCUtil.getConnection();
                 PreparedStatement statement = connection.prepareStatement(sql);
@@ -185,10 +185,11 @@ public class CustomerRepository implements ICustomerRepository{
                 while (rs.next()){
                     int total = rs.getInt(1);
                     int countPage = 0;
-//                    countPage = total/5;
+                    countPage = total/5;
                     if(total % 5 == 0){
                         return countPage;
-                    }else{
+
+                    }else {
                         countPage++;
                     }
                     return countPage;
@@ -202,7 +203,7 @@ public class CustomerRepository implements ICustomerRepository{
     @Override
     public List<Customer> getPaging(int index) {
         List<Customer> customerList = new ArrayList<>();
-        String sql = "SELECT * FROM customer limit ?,5;";
+        String sql = "select * from customer where status = 1 limit ?,5;";
         try(
                 Connection connection = JDBCUtil.getConnection();
                 PreparedStatement statement = connection.prepareStatement(sql);
@@ -229,13 +230,13 @@ public class CustomerRepository implements ICustomerRepository{
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return customerList;
     }
 
     @Override
     public List<Customer> searchEmployee(String string) {
         List<Customer> customerList = new ArrayList<>();
-        String sql = "SELECT * FROM customer where customer_name like ? ;";
+        String sql = "SELECT * FROM customer where customer_name like ?  and status = 1;";
         try(
                 Connection connection = JDBCUtil.getConnection();
                 PreparedStatement statement =connection.prepareStatement(sql);
